@@ -1,0 +1,31 @@
+# agent-adoption-triage
+
+> An Agent Skill (MIT) holding a five-question triage for routing AI work to the right architecture — script, algorithmic search, LLM workflow, or autonomous agentic loop — before any agent is built. The core inversion: the question is not whether an agent can do the work, but whether accountability can still be distributed after deployment. Route the work first; pick the architecture second.
+
+## Core documentation
+
+- [llms-full.txt](llms-full.txt): self-contained Q&A reference for AI agents (Project Facts, Prior Research, question-form H2 sections)
+- [README.md](README.md): human-facing narrative (install, five-questions table, curation model)
+- [SKILL.md](skills/agent-adoption-triage/SKILL.md): full skill specification — the Business AI Quadrants, the five questions with tests, per-quadrant governance sets, hybrid guidance, 10-item anti-patterns checklist, triage record template
+
+## Architecture
+
+- Four **Business AI Quadrants** classify the work (not the agent): deterministic × semantic-judgment on one axis, pre-defined × exploratory control flow on the other — (1) Script, (2) Algorithmic Search, (3) LLM Workflow, (4) Autonomous Agentic Loop
+- **Five questions**: Q0 design/operation phase → Q1 deterministic rules? → Q2 static-finite search space? → Q3 workflow drawable in advance? → Q4 pre-named gap-bearer + Phase-crossing decision?
+- **Load-bearing asymmetry**: in the LLM Workflow Quadrant each call's contribution is post-hoc separable and redirect succeeds; in the Autonomous Agentic Loop Quadrant judgment elements blend at runtime and the **attribution gap** is non-removable — it can only be absorbed by a pre-named **gap-bearer**
+- **Phase is a third dimension**: every quadrant can appear in design or operation phase; operation-phase Quadrant-4 placements additionally require a recorded **Phase-crossing decision** (handle new patterns in place vs route back to design)
+- Audit layer: per-quadrant governance sets with redirect paths, 10-item anti-patterns checklist, triage record template
+- Provenance: the "how" counterpart to [AAP ADR-0009/0010](https://github.com/shimo4228/agent-attribution-practice/tree/main/docs/adr); installable publication of the [AAP `docs/quadrants/`](https://github.com/shimo4228/agent-attribution-practice/tree/main/docs/quadrants) navigator
+
+## Standard reference
+
+- [Agent Skill specification](https://agentskills.io/specification): the skill format used by this repo
+- [SkillsMP marketplace](https://agentskills.io/specification): one-step install via `/skills add shimo4228/agent-adoption-triage`
+
+## Sibling skills
+
+- [llm-agent-security-principles](https://github.com/shimo4228/llm-agent-security-principles): the "how" counterpart to AAP ADR-0001..0004 — structural security for autonomous LLM agents (same research line)
+- [search-first](https://github.com/shimo4228/search-first): enforces a research-before-coding workflow with a 4-way Adopt / Extend / Compose / Build decision
+- [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer): writes AI-facing docs optimized for ChatGPT / Perplexity / Gemini citation
+- [skill-comply](https://github.com/shimo4228/skill-comply): measures whether agents actually follow skill / rule definitions
+- [context-sync](https://github.com/shimo4228/context-sync): audits and fixes project documentation roles

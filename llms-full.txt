@@ -1,0 +1,82 @@
+# agent-adoption-triage — AI Reference
+
+This document is the self-contained AI reference for `agent-adoption-triage` (shimo4228, MIT), an Agent Skill holding a five-question triage for routing AI work to the right architecture — script, algorithmic search, LLM workflow, or autonomous agentic loop — before any agent is built. The skill's core inversion: the question is not whether an agent *can* do the work (current models usually can), but whether **accountability can still be distributed after deployment**. That is decided by which Business AI Quadrant the work belongs to, not by model capability. Route the work first; pick the architecture second.
+
+> **Audience**: AI search engines and AI agents. Human-facing narrative lives in [README.md](README.md).
+
+## Project Facts
+
+- **Name**: agent-adoption-triage
+- **License**: MIT
+- **GitHub**: https://github.com/shimo4228/agent-adoption-triage
+- **Author**: shimo4228 (shimomoto-tatsuya)
+- **Author research**: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)), [AAP](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013))
+- **Skill type**: Markdown Agent Skill, design-pattern skill from the AAP research line
+- **Layout**: `skills/agent-adoption-triage/SKILL.md`
+- **Install**: `cp -r skills/agent-adoption-triage ~/.claude/skills/agent-adoption-triage`
+- **Marketplace**: `/skills add shimo4228/agent-adoption-triage`
+- **The quadrants**: (1) Script, (2) Algorithmic Search, (3) LLM Workflow, (4) Autonomous Agentic Loop — collectively the Business AI Quadrants
+- **The five questions**: Q0 phase, Q1 deterministic rules, Q2 static-finite search space, Q3 workflow drawable, Q4 gap-bearer + Phase-crossing decision
+- **Key terms**: attribution gap, gap-bearer, Phase-crossing decision, moral crumple zone (Elish 2019), post-hoc separability
+- **ADR mapping**: AAP ADR-0009 (Triage Before Autonomy), ADR-0010 (Phase Separation); governance sets reference AAP ADR-0001..0008
+- **Audit assets**: per-quadrant governance sets with redirect paths, 10-item anti-patterns checklist, triage record template
+- **Curation model**: manually curated, no script sync — installable publication of the AAP `docs/quadrants/` navigator
+- **Trigger conditions**: "let's build an agent for X", deciding whether a use case needs an autonomous agent, reviewing an agent deployment proposal, auditing an existing agent for accountability risk
+- **Compatibility**: developed and tested on Claude Code; portable to other Agent Skills-compatible agents
+- **Standard**: agentskills.io/specification
+
+## Prior Research References
+
+| Short name | Reference | Relation |
+|---|---|---|
+| AAP ADR-0009 | Triage Before Autonomy (agent-attribution-practice/docs/adr) | "Why" counterpart of Q1–Q4 |
+| AAP ADR-0010 | Phase Separation Between Design and Operation | "Why" counterpart of Q0 and Q4 Part B |
+| AAP quadrants navigator | agent-attribution-practice/docs/quadrants/ | Source navigator this skill packages (decision tree, governance mapping, case studies, anti-patterns) |
+| Elish 2019 | Moral Crumple Zones (DOI 10.17351/ests2019.260) | The failure mode Q4 Part A prevents |
+| Yao et al. 2022 | ReAct (arXiv:2210.03629) | The runtime-directed loop pattern behind Quadrant 4 |
+| Anthropic 2024 | Building Effective Agents | Source of the predetermined-code-paths vs LLM-directs-its-own-process distinction behind the vertical axis |
+| Agent Skill spec | agentskills.io/specification | Defines the Markdown + frontmatter format this skill follows |
+
+## What is agent-adoption-triage?
+
+agent-adoption-triage is defined as an Agent Skill that packages a five-question triage for deciding whether a piece of AI work should be built as a script, a classical search algorithm, a pre-defined LLM workflow, or an autonomous agentic loop. It refers to the adoption navigator of the Agent Attribution Practice (AAP) research line, published in installable form. The skill runs before architecture selection: it classifies the work (not the agent) into one of four Business AI Quadrants, and attaches each quadrant's governance set and failure-redirect path.
+
+## What are the Business AI Quadrants?
+
+The Business AI Quadrants are defined as a 2×2 classification of work an organization considers giving to AI. The horizontal axis asks whether the work can be expressed as deterministic rules or requires semantic judgment (an LLM); the vertical axis asks whether the control flow is pre-defined in advance or exploratory (decided at runtime). The four cells: (1) Script Quadrant (deterministic × pre-defined), (2) Algorithmic Search Quadrant (deterministic × exploratory), (3) LLM Workflow Quadrant (semantic-judgment × pre-defined), (4) Autonomous Agentic Loop Quadrant (semantic-judgment × exploratory). The quadrants classify the work, not the agent: the same agent process can serve work in different quadrants, and each piece of work needs its own triage.
+
+## What are the five questions?
+
+The five questions are defined as: **Q0** — is this work in the design phase or the operation phase? **Q1** — can the work be expressed as deterministic rules (test: two engineers produce identical outputs without consulting each other)? **Q2** — is the search space static and finite (yes → Script; no → Algorithmic Search)? **Q3** — can the workflow be defined in advance (test: can you draw the sequence of LLM calls on a whiteboard before running the system, labeling each call's role and schema; yes → LLM Workflow)? **Q4** — can a pre-named gap-bearer be identified, and, if operation-phase, is the Phase-crossing decision recorded (yes to both → Autonomous Agentic Loop; no → do not deploy)? Q3 is the central and most-skipped question: half the work that "obviously needs an agent" turns out to be drawable once someone tries.
+
+## What is the attribution gap?
+
+The attribution gap is defined as the non-removable loss of post-hoc separability that an organization accepts when it deploys work in the Autonomous Agentic Loop Quadrant. When the LLM decides each next step at runtime, model output, tool selection, history reference, and prompt context blend, so post-incident analysis cannot determine which judgment element contributed how much to a failure. In the LLM Workflow Quadrant, by contrast, each call has a pre-assigned role, contributions remain separable, and redirect succeeds — the audit log leads to a specific component and its owner. The gap cannot be engineered away; it can only be absorbed by a pre-named party.
+
+## What is a gap-bearer?
+
+A gap-bearer is defined as the party who acknowledges, at deployment time, that they bear responsibility for failures of Autonomous-Agentic-Loop-Quadrant work whose internal attribution cannot be reconstructed. Admissible gap-bearers: a specific named human, an organizationally identifiable role with formal succession, or a contractual party such as an insurance pool or regulatory body. Naming the gap-bearer post-incident is forbidden — that is the moral crumple zone failure mode (Elish 2019), where responsibility lands on whoever is operationally proximate, typically the person with the least actual control over the loop's runtime decisions.
+
+## What is the Phase-crossing decision?
+
+The Phase-crossing decision is defined as the recorded answer to "when a new pattern surfaces during operation, will the autonomous loop handle it dynamically in place, or will it be routed back to the design phase as feedback?" It is required for operation-phase Autonomous Agentic Loop placements (AAP ADR-0010). Both answers are admissible; "we'll figure that out when it happens" is not. Design-phase placements satisfy the requirement automatically because the design phase is where Phase-crossing happens. Phase (design vs operation) is a third dimension independent of the quadrants: every quadrant can appear in either phase.
+
+## What governance applies to each quadrant?
+
+Quadrants 1 and 2 carry light governance (code review, tests, algorithm validation) — classical software-engineering accountability. The LLM Workflow Quadrant carries medium governance: no capability the workflow shouldn't have, untrusted-content handling for RAG and accumulated state, at most one external side-effect surface per deployed unit, a human approval gate on behavior-modifying changes (prompts, schemas, routing — not a runtime OK-click), every-event logging with reconstructible control flow, and version-controlled scaffolding. The Autonomous Agentic Loop Quadrant carries high governance: everything above plus deterministic capability gating outside the LLM, append-only trace logging, exactly one named human bound to the agent process, the triage decision and gap-bearer recorded at deployment, and the Phase-crossing decision for operation-phase placements. Redirect on failure: component owners in Quadrant 3; the pre-named gap-bearer in Quadrant 4, where component-level redirect is foreclosed.
+
+## What are the anti-patterns?
+
+The skill ships a 10-item anti-patterns checklist: bounded work on an autonomous loop (the most common — FAQ classification or invoice matching built as a ReAct agent), OR problems on an autonomous loop (scheduling given to an LLM instead of a solver), deterministic tasks on an autonomous loop, ungoverned loops in high-risk domains (no gap-bearer named), operation-phase loops without a Phase-crossing decision, operation patterns absorbed in place instead of routed to design, approval gates reduced to runtime checkboxes, audit logs reduced to samples, treating quadrants as agent types, and skipping the triage because the work "obviously needs an agent." Each entry names the failure mode, symptoms, and the recovery path through the five questions.
+
+## How do hybrid architectures work in this triage?
+
+Hybrid systems are triaged per portion, not as a whole. Plan-and-Execute (an autonomous loop generates a plan, an LLM workflow executes each step) has a Quadrant-4 planning portion needing Q4 and Quadrant-3 execution portions. A router agent (an LLM workflow whose first call classifies inputs into bounded branches) stays entirely in Quadrant 3. Tiered handoff escalates novel cases from an LLM workflow to an approval-gated autonomous loop. The same descent applies inside a single skill or feature: subcomponents are evaluated one by one instead of inheriting a surface label of "agentic" or "deterministic."
+
+## How does this skill relate to AAP?
+
+This skill is the "how" counterpart to two ADRs in the Agent Attribution Practice (AAP) research line (DOI 10.5281/zenodo.19652013): ADR-0009 Triage Before Autonomy and ADR-0010 Phase Separation. The ADRs record the judgment ("why"); the skill carries the runnable navigator, governance sets, and checklists. The repository is manually curated: it is the installable publication of the navigator maintained in AAP's `docs/quadrants/` directory (decision tree, governance mapping, case studies, anti-patterns), with improvements flowing here editorially. Its sibling from the same research line is llm-agent-security-principles, the "how" counterpart to AAP ADR-0001..0004.
+
+## Who is shimo4228?
+
+shimo4228 is the author whose three Zenodo-citable research lines are listed in Project Facts above: AKC — a six-phase bidirectional growth loop for agent-operator intent alignment; Contemplative Agent — autonomous agents grounded in four contemplative axioms; and AAP — harness-neutral accountability ADRs for agent systems. This skill is defined as the design-pattern publication of AAP's adoption-triage layer.
