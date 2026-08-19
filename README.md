@@ -1,6 +1,6 @@
 # agent-adoption-triage
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/agent-adoption-triage) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/agent-adoption-triage)](https://gitmcp.io/shimo4228/agent-adoption-triage)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/agent-adoption-triage)
 
 An [Agent Skill](https://agentskills.io/specification) holding a **five-question triage for routing AI work to the right architecture** — script, algorithmic search, LLM workflow, or autonomous agentic loop — *before* any agent is built. The core inversion: the question is not whether an agent can do the work (it usually can), but whether **accountability can still be distributed after you deploy it**. Route the work first; pick the architecture second.
 
