@@ -20,12 +20,11 @@
 ## Standard reference
 
 - [Agent Skill specification](https://agentskills.io/specification): the skill format used by this repo
-- [SkillsMP marketplace](https://agentskills.io/specification): one-step install via `/skills add shimo4228/agent-adoption-triage`
 
 ## Sibling skills
 
 - [llm-agent-security-principles](https://github.com/shimo4228/llm-agent-security-principles): the "how" counterpart to AAP ADR-0001..0004 — structural security for autonomous LLM agents (same research line)
-- [search-first](https://github.com/shimo4228/search-first): enforces a research-before-coding workflow with a 4-way Adopt / Extend / Compose / Build decision
+- [search-first](https://github.com/shimo4228/search-first): makes the agent search registries, code, papers and official docs before building and write a dated, sourced report; the caller picks Adopt, Adopt-part or Build
 - [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer): writes AI-facing docs optimized for ChatGPT / Perplexity / Gemini citation
 - [skill-comply](https://github.com/shimo4228/skill-comply): measures whether agents actually follow skill / rule definitions
 - [context-sync](https://github.com/shimo4228/context-sync): audits and fixes project documentation roles
