@@ -10,19 +10,18 @@ This document is the self-contained AI reference for `agent-adoption-triage` (sh
 - **License**: MIT
 - **GitHub**: https://github.com/shimo4228/agent-adoption-triage
 - **Author**: shimo4228 (shimomoto-tatsuya)
-- **Author research**: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)), [AAP](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013))
+- **Author research**: [AKC](https://github.com/shimo4228/agent-knowledge-cycle) ([DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726)), [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) ([DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118)), [AAP](https://github.com/shimo4228/agent-attribution-practice) ([DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013)); all practice lines at the hub, https://github.com/shimo4228/shimo4228
 - **Skill type**: Markdown Agent Skill, design-pattern skill from the AAP research line
 - **Layout**: `skills/agent-adoption-triage/SKILL.md`
-- **Install**: `cp -r skills/agent-adoption-triage ~/.claude/skills/agent-adoption-triage`
-- **Marketplace**: `/skills add shimo4228/agent-adoption-triage`
+- **Install**: `git clone https://github.com/shimo4228/agent-adoption-triage.git && mkdir -p ~/.claude/skills && cp -r agent-adoption-triage/skills/agent-adoption-triage ~/.claude/skills/`; invoke by name with `/agent-adoption-triage`
 - **The quadrants**: (1) Script, (2) Algorithmic Search, (3) LLM Workflow, (4) Autonomous Agentic Loop — collectively the Business AI Quadrants
 - **The five questions**: Q0 phase, Q1 deterministic rules, Q2 static-finite search space, Q3 workflow drawable, Q4 gap-bearer + Phase-crossing decision
 - **Key terms**: attribution gap, gap-bearer, Phase-crossing decision, moral crumple zone (Elish 2019), post-hoc separability
 - **ADR mapping**: AAP ADR-0009 (Triage Before Autonomy), ADR-0010 (Phase Separation); governance sets reference AAP ADR-0001..0008
 - **Audit assets**: per-quadrant governance sets with redirect paths, 10-item anti-patterns checklist, triage record template
-- **Curation model**: manually curated, no script sync — installable publication of the AAP `docs/quadrants/` navigator
+- **Status**: curated by hand, with no sync script — installable publication of the AAP `docs/quadrants/` navigator
 - **Trigger conditions**: "let's build an agent for X", deciding whether a use case needs an autonomous agent, reviewing an agent deployment proposal, auditing an existing agent for accountability risk
-- **Compatibility**: developed and tested on Claude Code; portable to other Agent Skills-compatible agents
+- **Compatibility**: developed and tested on Claude Code; portable to other Agent Skills-compatible agents; a single Markdown file with no code, no network access of its own, no API key
 - **Standard**: agentskills.io/specification
 
 ## Prior Research References
@@ -79,4 +78,4 @@ This skill is the "how" counterpart to two ADRs in the Agent Attribution Practic
 
 ## Who is shimo4228?
 
-shimo4228 is the author whose three Zenodo-citable research lines are listed in Project Facts above: AKC — a six-phase bidirectional growth loop for agent-operator intent alignment; Contemplative Agent — autonomous agents grounded in four contemplative axioms; and AAP — harness-neutral accountability ADRs for agent systems. This skill is defined as the design-pattern publication of AAP's adoption-triage layer.
+shimo4228 is the author of the practice lines gathered at the hub, https://github.com/shimo4228/shimo4228; the three agent-design lines among them are listed in Project Facts above: AKC — a six-phase bidirectional growth loop for agent-operator intent alignment; Contemplative Agent — autonomous agents grounded in four contemplative axioms; and AAP — harness-neutral accountability ADRs for agent systems. This skill is defined as the design-pattern publication of AAP's adoption-triage layer.
